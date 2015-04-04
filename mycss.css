@@ -1,0 +1,140 @@
+		body {
+		    color: #333;
+		    font-family: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif, "微软雅黑";
+		    background-color: #eee;
+		    webkit-overflow-scrolling: touch;
+		    margin: 0;
+		}
+		.title {
+		    background-color: #7878a8;
+		    color: #fff;
+		    width: 100%;
+		    font-size: 1.5em;
+		    margin: 0;
+		    padding: 12px 0;
+		}
+		.wrap {
+		    padding: 0 0.7rem;
+		}
+		.block {
+		    width: 100%;
+		    border-spacing: 0;
+		}
+		.block .block-item {
+		    width: 100%;
+		    padding: 0.5rem 0;
+		    display: table;
+		}
+		.block-item .td-label {
+		    width: 120px;
+		}
+		.block-item .pretitle {
+		    color: black;
+		    padding: 10px;
+		    font-size: 1.3em;
+		}
+		.text {
+		    height: 40px;
+		    width: 100%;
+		    border: solid 1px #ddd;
+		    color: #333;
+		    padding: 0;
+		    -webkit-border-radius: 0;
+		    background: #fff;
+		    -webkit-appearance: none;
+		    -webkit-tap-highlight-color: #fff;
+		    outline: 0;
+		}
+		.textarea {
+		    height: 80px;
+		    width: 100%;
+		    border: solid 1px #ddd;
+		    color: #333;
+		    padding: 0;
+		    -webkit-border-radius: 0;
+		    background: #fff;
+		    -webkit-appearance: none;
+		    -webkit-tap-highlight-color: #fff;
+		    outline: 0;
+		}
+		.font {
+		    font-size: 1.2em;
+		    color: #333;
+		}
+		.btn {
+		    border: 0;
+		    color: #fff;
+		    background-color: #7890a8;
+		    text-align: center;
+		    width: 100%;
+		    padding: 8px 0;
+		    font-size: 1.3em;
+		    border-radius: 3px;
+		    margin: 20px 0;
+		    -webkit-appearance: none;
+		    -webkit-box-flex: 1;
+		    display: block;
+		    -webkit-user-select: none;
+		}
+		.text-addr {
+		    width: 50px;
+		    border: solid 1px #ddd;
+		    color: #333;
+		    font-size: 1.2em;
+		    padding: 0;
+		    -webkit-border-radius: 0;
+		    background: #fff;
+		    -webkit-appearance: none;
+		    -webkit-tap-highlight-color: #fff;
+		    outline: 0;
+		}
+		.tipTitle {
+		    font-weight: bold;
+		    font-size: 0.8em";
+ color: #999;
+		}
+		.tip {
+		    font-size: 1em;
+		    color: #999;
+		    font-size: 0.8em"
+
+		}
+		.select {
+		    font-size: 1.3em;
+		    height: 40px;
+		    left: 0;
+		    /* opacity: 0; */
+		    outline: medium none;
+		    /* position: absolute; */
+		    top: -10px;
+		    width: 100%;
+		    font-size: 16px;
+		    border-radius: 5px;
+		}
+		.checklabel {
+		    padding: 10px 0;
+		    font-size: 1.3em;
+		}
+		.info-title {
+		    font-size: 1.3em;
+		    font-weight: bold;
+		}
+		.info-content {
+		    font-size: 1.2em;
+            text-decoration: none;
+		}
+		.block-info {
+		    padding: 5px 0;
+		}
+		.changeInfo {
+		    background: #F0F0F0;
+		    border: 1px solid #708090;
+		    border-radius: 5px;
+		    width: 55px;
+            padding: 3px;
+		    height: 20px;
+		    font-size: 10px;
+            font-family: "微软雅黑";
+		    cursor: hand;
+		}
+		

@@ -1,0 +1,223 @@
+<!DOCTYPE>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no,minimal-ui">
+    <meta charset="utf-8"/>
+    <title>萌站快递</title>
+    <link rel="stylesheet" type="text/css" href="mycss.css" />
+</head>
+
+<body onload="showInfo()">
+    <div class="title" style="text-align:center"><span>预约寄件</span></div>
+    <div style="float:right"><span style="font-size:0.8em;color:#7878a8;font-style:italic">20萌币/次</span> </div>
+    <div class="wrap">
+
+
+        <div>
+            <p class="tip"><span class="tipTitle">温馨提示:</span>请务必核对本页面底部您的用户信息，如有疑问请在微信里回复与客服联系。</p>
+        </div>
+        <form id="aClientOrderWrite" name="aClientOrderWrite" action="/deliverSys/aClientOrderWrite.action" onsubmit="return validate_form(this)" method="post">
+	  		
+	  		<table class="block " border="0 " cellspacing="0 ">
+		  		<tr class= "block-item ">
+			  		<td>
+			  			<select name="order.expressId " id="select_express" class="select ">
+    <option value="选择快递公司">选择快递公司</option>
+    <option value="shentong ">申通</option>
+    <option value="yuantong ">圆通</option>
+    <option value="kuaijie ">快捷</option>
+    <option value="zengyi ">增益</option>
+    <option value="suer ">速尔</option>
+    <option value="quanfeng ">全峰</option>
+    <option value="tiantian ">天天</option>
+
+
+</select>
+
+				    </td>
+		  		</tr>
+
+		  		<tr class= "block-item ">
+			  		<td>
+			  			<select name="order.messageTime " id="select_time" class="select ">
+    <option value="小哥上门时间">小哥上门时间</option>
+    <option value="今天 上午7:30-8:00 ">今天 上午7:30-8:00</option>
+    <option value="今天 上午11:30-12:00 ">今天 上午11:30-12:00</option>
+    <option value="今天 下午2:00-2:30 ">今天 下午2:00-2:30</option>
+    <option value="今天 下午6:00-6:30 ">今天 下午6:00-6:30</option>
+    <option value="明天 上午7:30-8:00 ">明天 上午7:30-8:00</option>
+    <option value="明天 上午11:30-12:00 ">明天 上午11:30-12:00</option>
+    <option value="明天 下午2:00-2:30 ">明天 下午2:00-2:30</option>
+    <option value="明天 下午6:00-6:30 ">明天 下午6:00-6:30</option>
+</select>
+
+				    </td>
+		  		</tr>
+
+		  		<tr class= "block-item ">
+			  		<td>
+			  			<textarea name="order.remark " cols=" " rows=" " id="aClientOrderWrite_order_remark " class="font textarea " col="4 " maxlength="100 " placeholder="快递数量多于1件或者重量很大请说明，如有其他需要叮嘱也请备注 " row="1 "></textarea>
+				    </td>
+		  		</tr>
+	  		</table>
+			<input type="submit" id="aClientOrderWrite_0 " value="提交" class="font btn "/>
+		</form>
+             </div>
+				<div class="block-info "><span class="info-title ">您的用户信息</span><input class="changeInfo" type="button" value="修改" onClick="update_name()"/></div>
+                <div class="block-info "><span class="info-content ">&nbsp;姓名：</span><span id="nameInfo" class="info-content ">Guest</span></div>
+                <div class="block-info "><span class="info-content ">&nbsp;电话：</span><span id="telInfo" class="info-content ">null</span></div>
+                <div class="block-info "><span class="info-content ">&nbsp;地址：</span><span id="addressInfo" class="info-content ">null</span></div>
+                <div class="block-info "><span class="info-content ">&nbsp;萌币余额：</span><span id="coin" class="info-content ">10</span></div>
+		
+
+ <script>
+    function validate_required(field, alerttxt) {
+    with(field) {
+        if (value === "选择快递公司") {
+            alert("同学你还没选哪家快递公司呢！ π__π");
+            return false
+        } else if (value === "小哥上门时间"){
+            alert("同学你还没选什么时候“约”小哥呢！ π__π");
+            return false
+        } else {
+            return true
+        }
+    }
+}
+     
+     function verify_coinEnough(coin) {
+         with(coin) {
+             var coinRest = parseInt(document.getElementById("coin").innerHTML);
+             if (coinRest < 20) {
+                 alert("萌币不够了！去充值吧");
+                 return false;
+             }
+         }
+     }
+
+function validate_form(thisform) {
+    with(thisform) {
+        if (validate_required(select_time, "同学你还没选什么时候“约”小哥呢！ π__π") == false) {
+            select_time.focus();
+            return false
+        }
+        if (validate_required(select_express, "同学你还没选哪家快递公司呢！ π__π") == false) {
+            select_express.focus();
+            return false
+        }
+        if (verify_coinEnough(coin) == false) {
+            return false;
+        }
+    }
+}
+    </script>
+    <script>
+     
+     function update_name() {
+         var value = prompt("更正名字为:",document.getElementById("nameInfo").innerHTML);
+         if (value === null) {
+             alert("你取消了本次联系人更改操作！");
+         } else if (value === "") {
+             alert("你一定要输入一个名字才可以！");
+             update_info();
+         } else {
+             document.getElementById("nameInfo").innerHTML=value;
+             setCookie("name",tel,365);
+             alert("已成功修改名字为："+ value);
+             update_tel();
+         }
+     }
+     function update_tel() {
+         var value = prompt("更正电话为:",document.getElementById("telInfo").innerHTML);
+         if (value === null) {
+             alert("你取消了本次联系方式更改操作！");
+         } else if (value === "") {
+             alert("你一定要输入一个手机或座机号码才可以！");
+             update_tel();
+         } else {
+             document.getElementById("telInfo").innerHTML=value;
+             setCookie("name",tel,365);
+             alert("已成功修改电话为："+ value);
+             update_address();
+         }
+     }
+     function update_address() {
+         var value = prompt("更正地址为:",document.getElementById("addressInfo").innerHTML);
+         if (value === null) {
+             alert("你取消了本次地址信息更改操作！");
+         } else if (value === "") {
+             alert("你一定要输入一个地址才可以！");
+             update_address();
+         } else {
+             document.getElementById("addressInfo").innerHTML=value;
+             setCookie("name",tel,365);
+             alert("已成功修改地址为："+ value);
+         }
+     }   
+    </script>	
+    
+    <script>
+    function setCookie(c_name,value,expiredays) {
+    var exdate=new Date()
+    exdate.setDate(exdate.getDate()+expiredays)
+    document.cookie=c_name+ "=" +escape(value)+
+    ((expiredays==null) ? "" : ";expires="+exdate.toGMTString())
+    }
+    function getCookie(c_name){
+    if (document.cookie.length>0)
+      {
+      c_start=document.cookie.indexOf(c_name + "=")
+      if (c_start!=-1)
+        { 
+        c_start=c_start + c_name.length+1 
+        c_end=document.cookie.indexOf(";",c_start)
+        if (c_end==-1) c_end=document.cookie.length
+        return unescape(document.cookie.substring(c_start,c_end))
+        } 
+      }
+    return ""
+    }
+    function delCookie(name){
+        var date = new Date(); 
+        date.setTime(date.getTime() - 10000); 
+        document.cookie = name + "=a; expires=" + date.toGMTString(); 
+    } 
+
+    function showInfo(){
+        name = getCookie("name");
+        tel = getCookie("tel");
+        address = getCookie("address")
+        if(name === null || name === "") {
+            alert("首次访问，先来补充下信息吧～就三步");
+            name=prompt("怎么称呼您？","");
+            tel=prompt("您的手机号码或者座机")
+            address=prompt("提供我们一个可以来上门服务的地址")
+            if (name!=null&&name!=""){
+                setCookie("name",name,365);
+                setCookie("tel",tel,365);
+                setCookie("address",address,365);
+            }
+            //update_name();
+        } else {
+            alert("欢迎回来，"+name);
+        }
+            document.getElementById("nameInfo").innerHTML = name;
+            document.getElementById("telInfo").innerHTML = tel;
+            document.getElementById("addressInfo").innerHTML = address;
+    }
+    </script>		
+  </body>
+  
+  <script>
+  function closeWindows(){
+    	WeixinJSBridge.call('closeWindow');
+    }
+    
+		document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {  
+		WeixinJSBridge.call('hideOptionMenu');  
+		});  
+	</script>
+	
+	
+</html>

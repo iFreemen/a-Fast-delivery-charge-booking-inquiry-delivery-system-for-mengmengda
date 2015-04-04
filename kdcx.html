@@ -1,0 +1,253 @@
+<!DOCTYPE>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no,minimal-ui">
+    <style type="text/css">
+        body {
+            color: #333;
+            font-family: "微软雅黑", "黑体", Arial, sans-serif;
+            background-color: #ebeced;
+            webkit-overflow-scrolling: touch;
+            margin: 0;
+        }
+        .title {
+            background-color: #ff2e4b;
+            text-align: center;
+            color: #fff;
+            width: 100%;
+            font-size: 1.5em;
+            margin: 0;
+            padding: 12px 0;
+        }
+        .wrap {
+            padding: 0 0.7rem;
+        }
+        .block {
+            width: 100%;
+            border-spacing: 0;
+        }
+        .block .block-item {
+            width: 100%;
+            padding: 0.5rem 0;
+            display: table;
+        }
+        .block-item .td-label {
+            width: 120px;
+        }
+        .block-item .pretitle {
+            color: black;
+            padding: 10px;
+            font-size: 1.3em;
+        }
+        .text {
+            height: 2.4rem;
+            width: 100%;
+            border: solid 1px #ddd;
+            color: #333;
+            padding: 0;
+            -webkit-border-radius: 0;
+            background: #fff;
+            -webkit-appearance: none;
+            -webkit-tap-highlight-color: #fff;
+            outline: 0;
+        }
+        .textarea {
+            height: 4.8rem;
+            width: 100%;
+            border: solid 1px #ddd;
+            color: #333;
+            padding: 0;
+            -webkit-border-radius: 0;
+            background: #fff;
+            -webkit-appearance: none;
+            -webkit-tap-highlight-color: #fff;
+            outline: 0;
+        }
+        .font {
+            font-size: 1.2em;
+            color: #333;
+        }
+        .btn {
+            border: 0;
+            color: #fff;
+            background-color: #38f;
+            text-align: center;
+            width: 100%;
+            padding: 8px 0;
+            font-size: 1.3em;
+            border-radius: 3px;
+            margin: 20px 0;
+            -webkit-appearance: none;
+            -webkit-box-flex: 1;
+            display: block;
+            -webkit-user-select: none;
+        }
+        .tip {
+            font-size: 1em;
+            color: #999;
+            font-size: 0.8em"
+
+        }
+        .select {
+            font-size: 1.2em;
+            margin: 30px 0 0 0;
+            border-radius: 5px;
+        }
+        .tx {
+            padding: 5px 0;
+            margin: 30px 0;
+            border-radius: 5px;
+            border: solid 1px black;
+            -webkit-appearance: none;
+        }
+        .info-title {
+            font-size: 1.3em;
+            font-weight: bold;
+        }
+        .info-content {
+            font-size: 1.2em;
+        }
+        .block-info {
+            padding: 5px 0;
+        }
+        td {
+            margin: 30px 0;
+        }
+    </style>
+
+
+
+</head>
+
+<body>
+    <div class="title" style="text-align:center;">
+        <span>萌站快递查询</span> 
+    </div>
+
+    <div class="wrap">
+
+
+        <form id="aExpressSearch" name="aExpressSearch" action="http://121.40.111.206:10080/express/wechatFind" onsubmit="return validate_form(this)" method="postl">
+
+            <table class="block" border="0" cellspacing="0">
+                <tr class="block-item">
+                    <td style="text-align:center;">
+                        <select name="expressId" id="aExpressSearch_expressId" class="select" style="width:60%">
+                            <option value="">选择快递公司</option>
+                            <option value="shentong">申通</option>
+                            <option value="yuantong">圆通</option>
+                            <option value="kuaijie">快捷</option>
+                            <option value="zengyi">增益</option>
+                            <option value="suer">速尔</option>
+                            <option value="quanfeng">全峰</option>
+                            <option value="tiantian">天天</option>
+
+
+
+                        </select>
+
+                    </td>
+                </tr>
+                <tr class="block-item">
+                    <td style="text-align:center;">
+                        <input type="text" name="express[express_single]" value="" id="aExpressSearch_expressNum" class="font tx" style="width:60%" placeholder="快递单号" />
+                    </td>
+                </tr>
+
+            </table>
+
+            <input type="submit" id="aExpressSearch_0" value="&#26597;&#35810;" class="font btn " />
+
+
+
+        </form>
+    </div>
+
+
+    <script type="text/javascript">
+        function validate_required(field, alerttxt) {
+            with(field) {
+                if (value == null || value == "") {
+                    alert(alerttxt);
+                    return false
+                } else {
+                    return true
+                }
+            }
+        }
+
+        function validate_form(thisform) {
+            with(thisform) {
+                if (validate_required(aExpressSearch_expressNum, "同学你还没有填写快递单号呢！ π__π") == false) {
+                    aExpressSearch_expressNum.focus();
+                    return false
+                }
+            }
+        }
+
+
+        var xmlhttp;
+
+        function verify1() {
+            var aExpressSearch_expressNum = document.getElementById("aExpressSearch_expressNum").value;
+            if (window.XMLHttpRequest) {
+                xmlhttp = new XMLHttpRequest();
+                if (xmlhttp.overrideMimeType) {
+                    xmlhttp.overrideMimeType("text/html");
+                }
+            } else if (window.ActiveXObject) {
+                var activeName = ["MSXML2.XMLHTTP", "Microsoft.XMLHTTP"];
+                for (var i = 0; i > activeName.length(); i++) {
+                    try {
+                        //非别取出，如果创建成功则终止循环，如果失败则会抛出异常继续循环  
+                        xmlhttp = new ActiveXObject(activeName[i]);
+                        break;
+                    } catch (e) {}
+                }
+            }
+            //确定XMLHttpRequest是否创建成功  
+            /*if(!xmlhttp) { 
+        alert("XMLHttpRequest创建失败!"); 
+        return; 
+    }else { 
+        alert("XMLHttpRequest创建成功!"+xmlhttp); 
+    }*/
+            //注册回调函数  
+            xmlhttp.onreadystatechange = callback;
+            url = "classisservlet?name=" + aExpressSearch_expressNum;
+            xmlhttp.open("POST", "http://121.40.111.206:10080/express/wechatFind", true);
+            //post请求要自己设置请求头  
+            xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            //发送数据，开始与服务器进行交互  
+            //post发送请求  
+            xmlhttp.send("name=" + aExpressSearch_expressNum);
+        }
+
+        function callback() {
+            //接收响应数据  
+            //判断对象状态是否交互完成，如果为4则交互完成  
+            if (xmlhttp.readyState == 4) {
+                //判断对象状态是否交互成功,如果成功则为200  
+                if (xmlhttp.status == 200) {
+                    //接收数据,得到服务器输出的纯文本数据  
+                    var response = xmlhttp.responseText;
+                    alert(response);
+                    //得到div的节点将数据显示在div上  
+                    //var divresult = document.getElementById("result");  
+                    //divresult.innerHTML = response;  
+                }
+            }
+        }
+    </script>
+</body>
+
+<script>
+    document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+        WeixinJSBridge.call('hideOptionMenu');
+    });
+</script>
+
+
+</html>
