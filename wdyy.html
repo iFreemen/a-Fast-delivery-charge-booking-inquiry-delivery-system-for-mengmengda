@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>我的预约</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <meta http-equiv="Expires" CONTENT="-1">
+    <meta http-equiv="Cache-Control" CONTENT="no-cache">
+    <script src="js/jquery-1.11.2.min.js"></script>
+    <script src="js/yu.js"></script>
+    <script src="js/grzx.js"></script>
+    <script src="js/wdyy.js"></script>
+    <link href="css/yu.css" rel="stylesheet"/>
+    <link href="css/mui.css" rel="stylesheet"/>
+    <link href="css/style.css" rel="stylesheet"/>
+    <link href="mycss.css" rel="stylesheet"/>
+
+    <style>
+    	body{background: #eee;}
+    	ul,li {margin: 0px;padding: 0px;}
+
+    	.listdiv {background: #fff;border: 1px dotted #7878a8;border-style:dashed; }
+    	.orderidbar {padding:10px; border-bottom: 1px dashed #7878a8;min-height: 60px;line-height: 40px;position: relative;}
+    	.orderidbar a {color: #4f4f4f;}
+    	.orderidbar b {color: #7878a8;font-weight: normal;}
+    	.p10 {padding: 10px;}
+    	.orderinfo {padding: 10px;background: #FFFFFF;color: #4f4f4f;line-height: 28px;}
+    	.orderidbar i {width: 30px;height: 28px;display: block;margin: 8px 0 0 8px;background-size: 29px 16px;position: absolute;z-index: 1;}
+    	.orderidbar i.jiaji {right: 35px;top: -3px;}
+    	.orderidbar i.go {background-position: -8px -320px;width: 20px;height:36px; margin: 5px 0 0 7px;background-size: 9px 18px;right: 10px;}
+    	.orderinfo ul li {list-style: none;}
+    	.orderinfo .tel {height: 15px;}
+    	.orderinfo .red {color: #ff634f;}
+    	.orderinfo .grey {color: #787878;}
+    	.imgs {width: 100%;margin-top: 10px;}
+    	.imgs li {float: left;width: 23%;margin-right: 4px;}
+    	.imgs img {width: 100%;border: 1px solid #E3E3E3;}
+    	.doarea {text-align: center;padding: 6px 0px;}
+    	.wbtn {width: 40%;}
+    	.wbtn.black {background: #787878;border: 1px solid #787878;}
+    	.wbtn.grey {background: #a8a8a8;border: 1px solid #A8A8A8;color:#FFFFFF;margin-left: 10px;}
+    	.line.grey {background: #E3E3E3;margin:5px 0px;}
+        .wbtn.blue {background: #fff;border: 1px solid #7878a8;color:#7878a8;margin-left: 10px;}
+                
+        #tabBar {
+            width: 100%;
+            text-align: center;
+            padding-bottom: 8px;
+        }
+        #handledd_content {
+            padding: 0 0.7rem;
+        }
+      #handling_content {
+            padding: 0 0.7rem;
+        }
+        
+        .handledd {
+            border:1px solid #7878a8;
+            background-color: #fff;
+            color: #7878a8;
+            line-height: 30px;
+            height: 30px;
+            border-top-left-radius: 5px;
+            border-bottom-left-radius: 5px;
+            display: inline-block;
+            margin-top: 10px;
+            width: 25%;
+        }
+        
+        .handling {
+            border:1px solid #7878a8;
+            color: #7878a8;
+            line-height: 30px;
+            height: 30px;
+            border-top-right-radius: 5px;
+            border-bottom-right-radius: 5px;
+            display: inline-block;
+            margin-top: 10px;
+            background-color: #fff;
+            width: 25%;
+        }
+        
+        .active {
+            border:1px solid #7878a8;
+            background-color: #7878a8;
+            color: #fff;
+        }
+    </style>
+
+</head>
+
+<body onload="getZZYYOrder()">
+    <div class="title" style="text-align:center;">
+        <span>我的预约</span>
+    </div>
+    <div id="tabBar"><span class="handledd"> 已处理</span><span class="handling">正在处理</span>
+    </div>
+<div class="mui-content p10 tab_content handledd_content" id="handledd_content" style="display:block;">
+                    <div class="listdiv mb10" id="quote_0">
+			    <a href="#">
+    			    <div class="orderidbar">				
+                        <span class="fl">下单时间:0000-00-00 00:00:00</span>    			    </div>
+			    </a>
+			    <div class="orderinfo">
+    				<ul>
+    					<li>预约类型: 未知</li>
+    					<li>知</li>
+                       <li>上门时间: 未知</li>
+                        <li>消费萌币: 未知</li>
+    					<li>备注:无</li>
+    				</ul>
+    				<div class="clear"></div>
+    				<div class="line grey"></div>
+                    <div class="doarea" >
+                        <a onclick="return confirm('是否确认取消？')" href='javascript:alert("暂不提供取消功能")'  class="mui-btn mui-btn-danger wbtn " style="display:none">取消预约</a>
+                        <a class="mui-btn mui-btn-warning  wbtn blue" href="tel:13735502414" >联系客服</a>
+                    </div>
+				    <div class="clear"></div>
+			    </div>
+		    </div>
+		    </div>	
+		    
+<div class="mui-content p10 tab_content handling_content" id="handling_content">
+        <!--s-->
+                    <div class="listdiv mb10" id="block_0">
+			    <a href="#">
+    			    <div class="orderidbar">				
+                        <span class="fl" style="color:#7878a8">下单时间:0000-00-00 00:00:00</span>    			    </div>
+			    </a>
+			    <div class="orderinfo">
+    				<ul>
+    					<li>预约类型: 未知</li>
+    					<li>知</li>
+                       <li>上门时间: 未知</li>
+                        <li>消费萌币: 未知</li>
+    					<li>备注:无</li>
+    				</ul>
+    				<div class="clear"></div>
+    				<div class="line grey"></div>
+                    <div class="doarea" >
+                        <a onclick="return confirm('是否确认取消？')" href='javascript:alert("暂不提供取消功能")'  class="mui-btn mui-btn-danger wbtn " style="display:none">取消预约</a>
+                        <a class="mui-btn mui-btn-warning  wbtn blue" href="tel:13735502414" >联系客服</a>
+                    </div>
+				    <div class="clear"></div>
+			    </div>
+		    </div>
+		    </div>	
+<div class="fixdiv"></div>
+<!--nav-->
+    <nav class="footbar">
+        <a href="yyjj.html">寄件</a>
+        <a href="yypj.html">派件</a>
+        <a href="wdyy.html">我的订单</a>
+        <a href="grzx.html">个人中心</a>
+    </nav>
+    <!--nav end-->
+<script>
+        $(document).ready(function () {
+            $(".tab_content").hide();
+            $("#tabBar span:last").addClass("active");
+            $(".tab_content:last").show();
+
+            $("#tabBar span").click(function () {
+                $("#tabBar span").removeClass("active");
+                $(this).addClass("active");
+                $(".tab_content").hide();
+                var showContent = "." + ($(this).attr("class")).substring(0, 8) + "_content";
+                $(showContent).show();
+                return false;
+            });
+
+        });
+    </script>
+
+</body>
+<script>
+    function closeWindows() {
+        WeixinJSBridge.call('closeWindow');
+    }
+
+    document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+        WeixinJSBridge.call('hideOptionMenu');
+    });
+</script>
+</html>

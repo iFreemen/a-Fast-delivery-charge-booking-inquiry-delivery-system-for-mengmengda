@@ -1,0 +1,104 @@
+<!doctype>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>萌站预约订单管理</title>
+    <link href="css/yu.css">
+    <link href="manage.css" rel="stylesheet" />
+    <script src="js/jquery-1.11.2.min.js" type="text/javascript"></script>
+    <script src="js/yu.js"></script>
+    <script src="js/manage.js" type="text/javascript"></script>
+</head>
+
+<body>
+<!--     <script>document.write(password());</script>-->
+
+
+    <div id="bg">
+
+        <div id="container">
+
+            <ul id="nav">
+                <a class="logo" href="manage.html">萌</a>
+                <li>
+                    <a href="http://wpa.qq.com/msgrd?v=3&amp;uin=531269157&amp;site=qq&amp;menu=yes" title="有问题Q我" target="_blank"> <img src="images/per.png" />
+                    </a>
+                </li>
+                <audio id="song" src="" controls="controls" autoplay="autoplay" ></audio>
+            </ul>
+            <div id="buoy"></div>
+        </div>
+
+
+
+    </div>
+
+    <div class="percent-box">
+        <div class="percent">
+
+            <div class="head">
+                <div class="tit">
+                    <h1>订单列表</h1>
+                    <h3>选择显示：<span id="areaSelect"></span><span id="spilt1"></span><span id="statusSelect"></span><span id="spilt2"></span><span id="typeSelect"></span></h3>
+                </div>
+                <div class="pernvg">
+                <a href="javascript:setRoute('恒生科技园')" class="left-radius" id="hsyq">恒生园区</a>
+                <a href="javascript:setRoute('梦想小镇')" id="mxxz">梦想小镇</a>
+                <a href="javascript:setRoute('正在处理')" id="zzcl">正在处理</a>
+                <a href="javascript:setRoute('已处理')" id="ycl">已处理</a>
+                <a href="javascript:setRoute('寄件')" id="jj">寄件</a>
+                <a href="javascript:setRoute('派件')" id="pj">派件</a>
+                <a href="javascript:window.location.reload()" id="czcx">重置查询</a>
+                <a href="javascript:wantRefresh()" class="right-radius" id="refresh_switch">刷新已关闭</a>
+
+                </div>
+                <div class="search">
+                    <input type="text" class="form-text" placeholder="输入关键词" value="" id="keyInput" />
+                    <a class="but button-pink btn-small"><img src="images/search.png" align="absmiddle"  />
+                    </a>
+                    <input type="button" value="添加订单" class="but button-blue btn-small"/>
+                </div>
+            </div>
+
+            <div class="content-box">
+                <table id="myTable" border="0" width="100">
+                    <thead>
+                        <tr id="tr_head">
+                            <th class="header">ID</th>
+                            <th class="avatar header" id="name">姓名</th>
+                            <th class="header" id="area"> 园区 </th>
+                            <th class="header" id="tel"> 电话 </th>
+                            <th class="header" id="room"> 办公室 </th>
+                            <th class="header" id="remark"> 备注 </th>
+                            <th class="header" id="expcompany"> 快递公司 </th>
+                            <th class="header" id="type"> 类型 </th>
+                            <th class="header" id="ordertime"> 下单时间 </th>
+                            <th class="header" id="sendtime"> 预约时间 </th>
+                            <th class="header" id="status"> 当前状态 </th>
+                            <th class="header" id="changestatus"> 操作 </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="center" colspan="6"> 请选择🔍导航栏搜索条件 </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="page" id="page"><span class='pageinfo' id='countinfo'>本页总记录数目为0条</span></div>
+            <div class="footer-info">
+                <h2>订单管理操作说明：</h2> 
+                1.进入系统，开启刷新，系统自动显示梦想小镇的所有待处理订单，如需显示恒生园区，选择该园区即可；<br>
+                2.若查询条件未选择园区，系统默认选择梦想小镇；若未选择订单状态，默认显示正在处理；<br> 
+                3. 点击➕来处理订单。<br>
+                4. 按键盘的Ctrl+F来查找当前页面中的特定信息，搜索、手工添加订单以及验证管理员身份功能尚未开通，望知悉。
+            </div>
+
+        </div>
+    </div>
+
+</body>
+
+</html>

@@ -18,14 +18,14 @@
     <div style="float:right"><span style="font-size:0.8em;color:#7878a8;font-style:italic">5萌币/次</span> </div>
     <div class="wrap">
         <div>
-            <p class="tip" style="color:red"><span class="tipTitle">温馨提示:</span>预约前请务必确认您的快递已经到达园区。</p>
+            <p class="tip" style="color:red"><span class="tipTitle">温馨提示:</span>该快递已到达园区。</p>
         </div>
         <form id="aClientOrderWrite" name="aClientOrderWrite">
 	  		
 	  		<table class="block " border="0 " cellspacing="0 ">
 		  		<tr class= "block-item">
 			  		<td>
-			  			<input type="text" name="express_orderNumber" value="" id="express_orderNumber" class="font text " placeholder="快递单号/手机号 (必填)"/>
+			  			快递单号：<span id="ppNum_autoFill_content"></span>
 				    </td>
 		  		</tr>
 
@@ -68,12 +68,17 @@
         <a href="grzx.html">个人中心</a>
     </nav>
   <script>
+      
+      $(document).ready(function () {
+          var ppNum_autoFill = getCookie("ppNum_autoFill");
+          document.getElementById("ppNum_autoFill_content").innerHTML = ppNum_autoFill;
+      })
+      
+      
+      
     function validate_required(field, alerttxt) {
     with(field) {
-        if (value === "") {
-            ui.error("同学你还没填快递单号呢！ π__π",1000);
-            return false
-        } else if (value === "小哥上门时间"){
+        if (eval(document.getElementById("select_time")).value === "小哥上门时间"){
             ui.error("同学你还没选什么时候“约”小哥呢！ π__π",1000);
             return false
         } else {
@@ -97,8 +102,8 @@ function validate_form(thisform) {
         if (validate_required(select_time, "同学你还没选什么时候“约”小哥呢！ π__π") == false) {
             select_time.focus();
             return false
-        }else if (validate_required(express_orderNumber, "同学你还没填快递单号呢！ π__π") == false) {
-            express_orderNumber.focus();
+        }else if (validate_required(ppNum_autoFill_content, "同学你还没填快递单号呢！ π__π") == false) {
+            ppNum_autoFill_content.focus();
             return false
         }else if (verify_coinEnough(coin) == false) {
             return false;
@@ -210,7 +215,8 @@ function validate_form(thisform) {
         
     function sendPJData1 (){
     var sendtime= eval(document.getElementById("select_time")).value;
-    var express_orderNumber = eval(document.getElementById("express_orderNumber")).value;
+    var ppNum_autoFill_content =document.getElementById("ppNum_autoFill_content").innerHTML;
+    var ppNum_autoFill_content1 = ppNum_autoFill_content.substring(4,ppNum_autoFill_content.length);
     var tel_raw = document.getElementById("telInfo").innerHTML;
     var name = document.getElementById("nameInfo").innerHTML;
     var site = document.getElementById("roomInfo").innerHTML;
@@ -243,7 +249,7 @@ function validate_form(thisform) {
  
         $.ajax({
             type: "POST",
-            data:"id="+id+"&name="+name+"&tel="+tel+"&site="+site+"&company="+company+"&garden="+area+"&gold="+coin+"&remark="+remark+"&expsingle="+express_orderNumber+"&ordertime="+ordertime+"&sendtime="+sendtime,
+            data:"id="+id+"&name="+name+"&tel="+tel+"&site="+site+"&company="+company+"&garden="+area+"&gold="+coin+"&remark="+remark+"&expsingle="+ppNum_autoFill_content1+"&ordertime="+ordertime+"&sendtime="+sendtime,
 			dataType: "JSON", 
             url:"http://121.40.18.253:8080/mengzhan/sendDeal.jsp",
             success: function(msg) {

@@ -1,0 +1,256 @@
+<!DOCTYPE>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no,minimal-ui">
+        <script src="js/jquery-1.11.2.min.js"></script>
+    <script src="js/yu.js"></script>
+    <script src="js/grzx.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/yu.css" />
+    <style type="text/css">
+        body {
+            color: #333;
+            font-family: "微软雅黑", "黑体", Arial, sans-serif;
+            background-color: #ebeced;
+            webkit-overflow-scrolling: touch;
+            margin: 0;
+        }
+       .title {
+            background-color: #7878a8;
+            text-align: center;
+            color: #fff;
+            width: 100%;
+            font-size: 1.5em;
+            margin: 0;
+            padding: 12px 0;
+        }
+        .wrap {
+            padding: 0 0.7rem;
+        }
+        .block {
+            width: 100%;
+            border-spacing: 0;
+        }
+        .block .block-item {
+            width: 100%;
+            padding: 0.5rem 0;
+            display: table;
+        }
+        .block-item .td-label {
+            width: 120px;
+        }
+        .block-item .pretitle {
+            color: black;
+            padding: 10px;
+            font-size: 1.3em;
+        }
+        .text {
+            height: 2.4rem;
+            width: 100%;
+            border: solid 1px #ddd;
+            color: #333;
+            padding: 0;
+            -webkit-border-radius: 0;
+            background: #fff;
+            -webkit-appearance: none;
+            -webkit-tap-highlight-color: #fff;
+            outline: 0;
+        }
+        .textarea {
+            height: 4.8rem;
+            width: 100%;
+            border: solid 1px #ddd;
+            color: #333;
+            padding: 0;
+            -webkit-border-radius: 0;
+            background: #fff;
+            -webkit-appearance: none;
+            -webkit-tap-highlight-color: #fff;
+            outline: 0;
+        }
+        .font {
+            font-size: 1.2em;
+            color: #333;
+        }
+        .btn {
+            border: 0;
+            color: #fff;
+            background-color: #7890a8;
+            text-align: center;
+            width: 100%;
+            padding: 8px 0;
+            font-size: 1.3em;
+            border-radius: 3px;
+            margin: 20px 0;
+            -webkit-appearance: none;
+            -webkit-box-flex: 1;
+            display: block;
+            -webkit-user-select: none;
+        }
+        .tip {
+            font-size: 1em;
+            color: #999;
+            font-size: 0.8em"
+
+        }
+        .reset {
+            font-size: 1.2em;
+            margin: 30px 0 0 0;
+            border-radius: 5px;
+        }
+        .tx {
+            padding: 5px 0;
+            margin: 30px 0;
+            border-radius: 5px;
+            border: solid 1px black;
+            -webkit-appearance: none;
+        }
+        .info-title {
+            font-size: 1.3em;
+            font-weight: bold;
+        }
+        .info-content {
+            font-size: 1.2em;
+        }
+        .block-info {
+            padding: 5px 0;
+        }
+        td {
+            margin: 30px 0;
+        }
+    </style>
+
+
+
+</head>
+
+<body onload="showLocalTel()">
+    <div class="title" style="text-align:center;height: 21px;line-height: 21px;">
+        <span>重新绑定</span> 
+    </div>
+
+    <div class="wrap">
+
+
+        <form id="aExpressSearch" name="aExpressSearch">
+
+            <table class="block" border="0" cellspacing="0">
+
+                      <tr class="block-item">
+                       <td style="text-align:center;">
+                     <div id="localNumber"></div>
+                    <input type="button" style="width:60%" value="解除当前绑定" class="reset" onclick="delLocalCookie()"/>
+                    </td>
+                </tr>
+                <tr class="block-item">
+                    <td style="text-align:center;">
+                        <input type="text" name="numberInput" value="" id="numberInput" class="font tx" style="width:60%" placeholder="输入已注册过的手机号码" />
+                    </td>
+                </tr>
+
+            </table>
+
+            <input type="button" id="bangding" value="新绑定" class="font btn " onclick="updateTel()" />
+
+        </form>
+    </div>
+
+
+    <script type="text/javascript">
+        function validate_required(field, alerttxt) {
+            with(field) {
+                if (value == null || value == "") {
+                    ui.error(alerttxt);
+                    return false
+                } else {
+                    return true
+                }
+            }
+        }
+        function verify_tel() {
+            var reg = /^(\d{3,4})-(\d{7,8})/;
+            var regph = /^(0|86|17951)?(13[0-9]|15[012356789]|17[678]|18[0-9]|14[57])[0-9]{8}$/;
+            var numberInput = eval(document.getElementById("numberInput")).value;
+            if (numberInput == null || numberInput == "") {
+                ui.error("请输入手机号",3000);
+                return false;
+            } else if (reg.test(numberInput)||regph.test(numberInput)) {
+               return true;
+            } else {
+                ui.error("请输入正确格式的手机号或座机号，座机要加区号，如：0571-88888888",1000);
+                return false;
+            }
+        }
+
+        function validate_form(thisform) {
+            with(thisform) {
+                if (validate_required(numberInput, "同学你还没填手机号码呢！ π__π") == false) {
+                    numberInput.focus();
+                    return false
+                } else if (verify_tel() == false) {
+                    return false;
+                } else {
+                    return true;
+                }
+            }
+        }
+        
+         
+    function delLocalCookie () {
+        delCookie("name");
+        delCookie("id");
+        delCookie("company");
+        delCookie("area");
+        delCookie("coin");
+        delCookie("tel");
+        delCookie("sex");
+        delCookie("room");
+        ui.notice("已解绑",1000);
+        showLocalTel();
+    }
+        function updateTel() {
+            if (validate_form(this)) {
+                var tel_l = eval(document.getElementById("numberInput")).value;
+                $.ajax({
+                    type: "POST",
+                    data: "tel=" + tel_l,
+                    dataType: "JSON",
+                    url: "http://121.40.18.253:8080/mengzhan/userFindDeal.jsp",
+                    success: function (data) {
+                        var msg = data;
+                        if (msg == "404") {
+                            ui.error("该号码尚未注册！")
+                        } else {
+                            var telInfo_r = msg[0].tel;
+                            var idInfo_r = msg[0].id;
+                          userToLocalCookie2(telInfo_r,idInfo_r);  
+                            ui.success("绑定成功！")
+                            showLocalTel();
+                        }
+                    }
+                    
+                })
+            }
+        }
+        
+        function userToLocalCookie2(telInfo_r,idInfo_r) {
+            setCookie("tel", telInfo_r,365);
+            setCookie("id", idInfo_r,365);
+        } 
+        function showLocalTel() {
+            var tel_l = getCookie("tel");
+            document.getElementById("localNumber").innerHTML = "当前绑定号码："+tel_l;
+        }
+
+    </script>
+</body>
+
+<script>
+    document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+        WeixinJSBridge.call('hideOptionMenu');
+    });
+</script>
+
+
+</html>

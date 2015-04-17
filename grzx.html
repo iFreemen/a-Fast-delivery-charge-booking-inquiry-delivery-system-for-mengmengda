@@ -1,0 +1,150 @@
+<!DOCTYPE>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no,minimal-ui">
+    <meta charset="utf-8" />
+    <script src="js/jquery-1.11.2.min.js"></script>
+    <script src="js/yu.js"></script>
+    <script src="js/grzx.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/yu.css" />
+    <link rel="stylesheet" type="text/css" href="mycss.css" />
+    
+</head>
+
+<body onload="showInfo()">
+    <div class="title" style="text-align:center;height: 21px;line-height: 21px;"><span>个人中心</span>
+    </div>
+    <div class="wrap">
+        <div>
+            <p class="tip"><span class="tipTitle">通知公告:</span>新注册用户赠送100萌币。</p>
+        </div>
+        <form id="userInfo" name="userInfo" >
+
+            <table class="block " border="0 " cellspacing="0 ">
+                <tr class="block-item">
+                    <td style="background:#fff">
+                        <input style="border-bottom:2px dotted #fff" type="text" name="nameInfo" value="" id="nameInfo" class="font text " placeholder="联系人" />
+                        <select style="border-bottom:2px dotted #fff" name="sexInfo" id="sexInfo" class="font text">
+                            <option value="男">男</option>
+                            <option value="女">女</option>
+                        </select>
+                        <input style="border-bottom:2px dotted #fff" type="text" name="telInfo" value="" id="telInfo" class="font text " placeholder="电话（或手机）" />
+                        <select style="border-bottom:2px dotted #fff" name="areaInfo " id="areaInfo" class="font text">
+                            <option value="梦想小镇">梦想小镇</option>
+                            <option value="恒生科技园">恒生科技园</option>
+<!--                            <option value="杭师大仓前校区">杭师大仓前校区</option>-->
+                        </select>
+                        <input style="border-bottom:2px dotted #fff" type="text" name="companyInfo" value="" id="companyInfo" class="font text " placeholder="公司" />
+                        <input style="border-bottom:2px dotted #fff" type="text" name="roomInfo" value="" id="roomInfo" class="font text " placeholder="办公室号 （如：2-306）" />
+                    </td>
+                </tr>
+
+            </table>
+            <input type="button" id="userInfo_submit" value="保存" class="font btn " style="" onclick="sendData();"/>
+        </form>
+    </div>
+<div class="cwxx">
+        <div class="block-info "><span class="info-title ">财务信息</span>
+            <input class="changeInfo" type="button" value="充值" onClick="add_coin()"  style="display:none"/>
+        </div>
+        <div class="block-info "><span class="info-content ">&nbsp;客户ID：</span><span id="id" class="info-content "></span>
+        </div>
+        <div class="block-info "><span class="info-content ">&nbsp;萌币余额：</span><span id="coin" class="info-content "></span>
+        </div>
+    </div>
+    <nav class="footbar">
+        <a href="yyjj.html">寄件</a>
+        <a href="yypj.html">派件</a>
+        <a href="wdyy.html">我的订单</a>
+        <a href="grzx.html">个人中心</a>
+    </nav>
+    <script>
+        function validate_required(field, alerttxt) {
+            with(field) {
+                if (value == "" ||value == null) {
+                    ui.error(alerttxt,1000);
+                    return false
+                }else {
+                    return true
+                }
+            }
+        }
+
+        function verify_tel(telInfo) {
+            var reg = /^(\d{3,4})-(\d{7,8})/;
+            var regph = /^(0|86|17951)?(13[0-9]|15[012356789]|17[678]|18[0-9]|14[57])[0-9]{8}$/;
+            var telNmuber = eval(document.getElementById("telInfo")).value;
+            if (telNmuber == null || telNmuber == "") {
+                ui.error("请输入手机号",1000);
+                return false;
+            } else if (reg.test(telNmuber)||regph.test(telNmuber)) {
+               return true;
+            } else {
+                ui.error("请输入正确格式的手机号或座机号，座机要加区号，如：0571-88888888",1000);
+                return false;
+            }
+        }
+
+        function verify_coinEnough(coin) {
+            with(coin) {
+                var coinRest = parseInt(document.getElementById("coin").innerHTML);
+                if (coinRest < 20) {
+                    ui.error("萌币不够了！去充值吧",1000);
+                    return false;
+                }
+            }
+        }
+
+        function validate_form(thisform) {
+            with(thisform) {
+                if (validate_required(nameInfo, "同学你还没填你名字呢！ π__π") == false) {
+                    nameInfo.focus();
+                    return false;
+                } else if (verify_tel(telInfo) == false) {
+                    return false;
+                } else if (validate_required(companyInfo, "同学你还没说你是什么公司的呢！ π__π") == false) {
+                    companyInfo.focus();
+                    return false;
+                } else if (validate_required(roomInfo, "同学你还没说你办公室在哪里呢！ π__π") == false) {
+                    roomInfo.focus();
+                    return false;
+                }
+
+                    //ui.success("通过填写完整性检查！",1000);
+                    return true;
+                   
+                
+            }
+        }
+    </script>
+    <script>
+        function add_coin() {
+            var value = prompt("充值数目:", "");
+            if (value === null) {
+                ui.error("你取消了本次充值操作！",1000);
+            } else if (value === "") {
+                ui.error("你一定要输入一个金额才可以！",1000);
+                add_coin();
+            } else {
+                ui.notice("将转向支付页面支付" + value / 10 + "元",1000);
+            }
+        }
+    </script>
+
+
+
+</body>
+<script>
+    function closeWindows() {
+        WeixinJSBridge.call('closeWindow');
+    }
+
+    document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+        WeixinJSBridge.call('hideOptionMenu');
+    });
+</script>
+
+
+
+</html>

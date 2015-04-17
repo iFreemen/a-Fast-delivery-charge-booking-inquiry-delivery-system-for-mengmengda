@@ -1,0 +1,188 @@
+        body {
+            color: #333;
+            font-family: "微软雅黑", "黑体", Arial, sans-serif;
+            background-color: #ebeced;
+            webkit-overflow-scrolling: touch;
+            margin: 0;
+        }
+        
+        .title {
+            background-color: #7878a8;
+            text-align: center;
+            color: #fff;
+            width: 100%;
+            font-size: 1.5em;
+            margin: 0;
+            padding: 12px 0;
+        }
+        
+        #wrap1,
+        #wrap2 {
+            padding: 0 0.7rem;
+        }
+        
+        .block {
+            width: 100%;
+            border-spacing: 0;
+        }
+        
+        .block .block-item {
+            width: 100%;
+            padding: 0.5rem 0;
+            display: table;
+        }
+        
+        .block-item .td-label {
+            width: 120px;
+        }
+        
+        .block-item .pretitle {
+            color: black;
+            padding: 10px;
+            font-size: 1.3em;
+        }
+        
+        .text {
+            height: 2.4rem;
+            width: 100%;
+            border: solid 1px #ddd;
+            color: #333;
+            padding: 0;
+            -webkit-border-radius: 0;
+            background: #fff;
+            -webkit-appearance: none;
+            -webkit-tap-highlight-color: #fff;
+            outline: 0;
+        }
+        
+        .textarea {
+            height: 4.8rem;
+            width: 100%;
+            border: solid 1px #ddd;
+            color: #333;
+            padding: 0;
+            -webkit-border-radius: 0;
+            background: #fff;
+            -webkit-appearance: none;
+            -webkit-tap-highlight-color: #fff;
+            outline: 0;
+        }
+        
+        .font {
+            font-size: 1.2em;
+            color: #333;
+        }
+        
+        .btn {
+            border: 0;
+            color: #fff;
+            background-color: #7890a8;
+            text-align: center;
+            width: 100%;
+            padding: 8px 0;
+            font-size: 1.3em;
+            border-radius: 3px;
+            margin: 20px 0;
+            -webkit-appearance: none;
+            -webkit-box-flex: 1;
+            display: block;
+            -webkit-user-select: none;
+        }
+        
+        .tip {
+            font-size: 1em;
+            color: #999;
+            font-size: 0.8em"
+
+        }
+        
+        .select {
+            font-size: 1.2em;
+            margin: 30px 0 0 0;
+            border-radius: 5px;
+        }
+        
+        .tx {
+            padding: 5px 0;
+            margin: 30px 0;
+            border-radius: 5px;
+            border: solid 1px black;
+            -webkit-appearance: none;
+        }
+        
+        .info-title {
+            font-size: 1.3em;
+            font-weight: bold;
+        }
+        
+        .info-content {
+            font-size: 1.2em;
+        }
+        
+        .block-info {
+            padding: 5px 0;
+        }
+        
+        td {
+            margin: 30px 0;
+        }
+        
+        #tabBar {
+            width: 100%;
+            text-align: center;
+        }
+        
+        .tabMenu1 {
+            border:1px solid #7878a8;
+            background-color: #fff;
+            color: #7878a8;
+            line-height: 30px;
+            height: 30px;
+            border-top-left-radius: 5px;
+            border-bottom-left-radius: 5px;
+            display: inline-block;
+            margin-top: 10px;
+            width: 25%;
+        }
+        
+        .tabMenu2 {
+            border:1px solid #7878a8;
+            color: #7878a8;
+            line-height: 30px;
+            height: 30px;
+            border-top-right-radius: 5px;
+            border-bottom-right-radius: 5px;
+            display: inline-block;
+            margin-top: 10px;
+            background-color: #fff;
+            width: 25%;
+        }
+        
+        .active {
+            border:1px solid #7878a8;
+            background-color: #7878a8;
+            color: #fff;
+        }
+#infoShow {
+            color: #7878a8;
+            border: 1px dashed #7878a8;
+            text-decoration: none;
+            background: #fff;
+            width: 80%;
+            margin-left: 10%;
+		    height: 150px;
+		    text-align: left;
+		    -webkit-box-shadow: none;
+            position: fixed;
+            bottom: 20px;
+}
+#infoShow div {
+    width: 80%;
+    height: 18px;
+    margin-left: 10%;
+    margin-top: 6px;
+}
+
+#is_title {
+    text-align: center;
+}

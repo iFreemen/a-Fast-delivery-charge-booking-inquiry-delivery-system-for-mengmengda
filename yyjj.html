@@ -3,221 +3,325 @@
 
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no,minimal-ui">
-    <meta charset="utf-8"/>
+    <meta charset="utf-8" />
     <title>萌站快递</title>
+    <script src="js/jquery.1.6.2.min.js" type="text/javascript"></script>
+    <script src="js/yu.js" type="text/javascript"></script>
+    <script src="js/grzx.js" type="text/javascript"></script>
+    <link rel="stylesheet" type="text/css" href="css/yu.css" />
     <link rel="stylesheet" type="text/css" href="mycss.css" />
 </head>
 
-<body onload="showInfo()">
-    <div class="title" style="text-align:center"><span>预约寄件</span></div>
-    <div style="float:right"><span style="font-size:0.8em;color:#7878a8;font-style:italic">20萌币/次</span> </div>
+<body onload="showLocalInfo()">
+    <div class="title" style="text-align:center;height: 21px;line-height: 21px;"><span>预约寄件</span>
+    </div>
+    <div style="float:right"><span style="font-size:0.8em;color:#7878a8;font-style:italic">5萌币/次</span> </div>
     <div class="wrap">
 
 
         <div>
             <p class="tip"><span class="tipTitle">温馨提示:</span>请务必核对本页面底部您的用户信息，如有疑问请在微信里回复与客服联系。</p>
         </div>
-        <form id="aClientOrderWrite" name="aClientOrderWrite" action="/deliverSys/aClientOrderWrite.action" onsubmit="return validate_form(this)" method="post">
-	  		
-	  		<table class="block " border="0 " cellspacing="0 ">
-		  		<tr class= "block-item ">
-			  		<td>
-			  			<select name="order.expressId " id="select_express" class="select ">
-    <option value="选择快递公司">选择快递公司</option>
-    <option value="shentong ">申通</option>
-    <option value="yuantong ">圆通</option>
-    <option value="kuaijie ">快捷</option>
-    <option value="zengyi ">增益</option>
-    <option value="suer ">速尔</option>
-    <option value="quanfeng ">全峰</option>
-    <option value="tiantian ">天天</option>
+        <form id="aClientOrderWrite" name="aClientOrderWrite">
+
+            <table class="block " border="0 " cellspacing="0 ">
+                <tr class="block-item ">
+                    <td>
+                        <select name="order.expressId " id="select_express" class="select ">
+                            <option value="选择快递公司">选择快递公司</option>
+                            <option value="shentong ">申通</option>
+                            <option value="yuantong ">圆通</option>
+                            <option value="kuaijie ">快捷</option>
+                            <option value="zengyi ">增益</option>
+                            <option value="suer ">速尔</option>
+                            <option value="quanfeng ">全峰</option>
+                            <option value="tiantian ">天天</option>
 
 
-</select>
+                        </select>
 
-				    </td>
-		  		</tr>
+                    </td>
+                </tr>
 
-		  		<tr class= "block-item ">
-			  		<td>
-			  			<select name="order.messageTime " id="select_time" class="select ">
-    <option value="小哥上门时间">小哥上门时间</option>
-    <option value="今天 上午7:30-8:00 ">今天 上午7:30-8:00</option>
-    <option value="今天 上午11:30-12:00 ">今天 上午11:30-12:00</option>
-    <option value="今天 下午2:00-2:30 ">今天 下午2:00-2:30</option>
-    <option value="今天 下午6:00-6:30 ">今天 下午6:00-6:30</option>
-    <option value="明天 上午7:30-8:00 ">明天 上午7:30-8:00</option>
-    <option value="明天 上午11:30-12:00 ">明天 上午11:30-12:00</option>
-    <option value="明天 下午2:00-2:30 ">明天 下午2:00-2:30</option>
-    <option value="明天 下午6:00-6:30 ">明天 下午6:00-6:30</option>
-</select>
+                <tr class="block-item ">
+                    <td>
+                        <select name="order.messageTime " id="select_time" class="select ">
+                            <option value="小哥上门时间">小哥上门时间</option>
+                            <option value="今天 11:30-13:00">今天 11:30-13:00</option>
+                            <option value="今天 16:00-17:00">今天 16:00-17:00</option>
+                            <option value="今天 17:00-18:00">今天 17:00-18:00</option>
+                            <option value="明天 11:30-13:00">明天 11:30-13:00</option>
+                            <option value="明天 16:00-17:00">明天 16:00-17:00</option>
+                            <option value="明天 17:00-18:00">明天 17:00-18:00</option>
+                        </select>
 
-				    </td>
-		  		</tr>
+                    </td>
+                </tr>
 
-		  		<tr class= "block-item ">
-			  		<td>
-			  			<textarea name="order.remark " cols=" " rows=" " id="aClientOrderWrite_order_remark " class="font textarea " col="4 " maxlength="100 " placeholder="快递数量多于1件或者重量很大请说明，如有其他需要叮嘱也请备注 " row="1 "></textarea>
-				    </td>
-		  		</tr>
-	  		</table>
-			<input type="submit" id="aClientOrderWrite_0 " value="提交" class="font btn "/>
-		</form>
-             </div>
-				<div class="block-info "><span class="info-title ">您的用户信息</span><input class="changeInfo" type="button" value="修改" onClick="update_name()"/></div>
-                <div class="block-info "><span class="info-content ">&nbsp;姓名：</span><span id="nameInfo" class="info-content ">Guest</span></div>
-                <div class="block-info "><span class="info-content ">&nbsp;电话：</span><span id="telInfo" class="info-content ">null</span></div>
-                <div class="block-info "><span class="info-content ">&nbsp;地址：</span><span id="addressInfo" class="info-content ">null</span></div>
-                <div class="block-info "><span class="info-content ">&nbsp;萌币余额：</span><span id="coin" class="info-content ">10</span></div>
-		
+                <tr class="block-item ">
+                    <td>
+                        <textarea name="order.remark " cols=" " rows=" " id="remarkInfo" class="font textarea " col="4 " maxlength="100 " placeholder="快递数量多于1件或者重量很大请说明，如有其他需要叮嘱也请备注 " row="1 "></textarea>
+                    </td>
+                </tr>
+            </table>
+            <input type="button" id="sendJJData" value="提交" class="font btn " onclick="validate_form(this)" />
+        </form>
+    </div>
+    <div class="block-info "><span class="info-title ">您的用户信息</span>
+        <input class="changeInfo" type="button" value="修改" onClick="window.location.href='grzx.html'" />
+    </div>
+    <div class="block-info "><span class="info-content ">&nbsp;姓名：</span><span id="nameInfo" class="info-content ">未知</span>&nbsp;&nbsp;<span id="sexInfo" class="info-content ">未知</span>&nbsp;&nbsp;<span class="info-content ">&nbsp;ID：</span><span id="idInfo" class="info-content ">未知</span>
+    </div>
+    <div class="block-info "><span class="info-content ">&nbsp;电话：</span><span id="telInfo" class="info-content ">未知</span>&nbsp;&nbsp;<span class="info-content ">&nbsp;萌币余额：</span><span id="coin" class="info-content ">未知</span>
+    </div>
+    <div class="block-info "><span class="info-content ">&nbsp;园区：</span><span id="areaInfo" class="info-content ">未知</span>
+    </div>
+    <div class="block-info "><span class="info-content ">&nbsp;公司：</span><span id="companyInfo" class="info-content ">未知</span>
+    </div>
 
- <script>
-    function validate_required(field, alerttxt) {
-    with(field) {
-        if (value === "选择快递公司") {
-            alert("同学你还没选哪家快递公司呢！ π__π");
-            return false
-        } else if (value === "小哥上门时间"){
-            alert("同学你还没选什么时候“约”小哥呢！ π__π");
-            return false
-        } else {
-            return true
+    <div class="block_info "><span class="info-content ">&nbsp;办公室：</span><span id="roomInfo" class="info-content ">未知</span>
+    </div>
+
+
+
+    <nav class="footbar">
+        <a href="yyjj.html">寄件</a>
+        <a href="yypj.html">派件</a>
+        <a href="wdyy.html">我的订单</a>
+        <a href="grzx.html">个人中心</a>
+    </nav>
+    <script>
+        function validate_required(field, alerttxt) {
+            with(field) {
+                if (value === "选择快递公司") {
+                    ui.error("同学你还没选哪家快递公司呢！ π__π", 1000);
+                    return false
+                } else if (value === "小哥上门时间") {
+                    ui.error("同学你还没选什么时候“约”小哥呢！ π__π", 1000);
+                    return false
+                } else {
+                    return true
+                }
+            }
         }
-    }
-}
-     
-     function verify_coinEnough(coin) {
-         with(coin) {
-             var coinRest = parseInt(document.getElementById("coin").innerHTML);
-             if (coinRest < 20) {
-                 alert("萌币不够了！去充值吧");
-                 return false;
-             }
-         }
-     }
 
-function validate_form(thisform) {
-    with(thisform) {
-        if (validate_required(select_time, "同学你还没选什么时候“约”小哥呢！ π__π") == false) {
-            select_time.focus();
-            return false
+        function verify_coinEnough(coin) {
+            with(coin) {
+                var coinRest = parseInt(document.getElementById("coin").innerHTML);
+                if (coinRest < 5) {
+                    ui.error("萌币不够了！去充值吧", 1000);
+                    return false;
+                }
+            }
         }
-        if (validate_required(select_express, "同学你还没选哪家快递公司呢！ π__π") == false) {
-            select_express.focus();
-            return false
+
+        function validate_form(thisform) {
+            with(thisform) {
+                if (validate_required(select_time, "同学你还没选什么时候“约”小哥呢！ π__π") == false) {
+                    select_time.focus();
+                    return false
+                } else if (validate_required(select_express, "同学你还没选哪家快递公司呢！ π__π") == false) {
+                    select_express.focus();
+                    return false
+                } else if (verify_coinEnough(coin) == false) {
+                    return false;
+                } else {
+                    sendJJData1();
+                }
+            }
         }
-        if (verify_coinEnough(coin) == false) {
-            return false;
-        }
-    }
-}
     </script>
     <script>
-     
-     function update_name() {
-         var value = prompt("更正名字为:",document.getElementById("nameInfo").innerHTML);
-         if (value === null) {
-             alert("你取消了本次联系人更改操作！");
-         } else if (value === "") {
-             alert("你一定要输入一个名字才可以！");
-             update_info();
-         } else {
-             document.getElementById("nameInfo").innerHTML=value;
-             setCookie("name",tel,365);
-             alert("已成功修改名字为："+ value);
-             update_tel();
-         }
-     }
-     function update_tel() {
-         var value = prompt("更正电话为:",document.getElementById("telInfo").innerHTML);
-         if (value === null) {
-             alert("你取消了本次联系方式更改操作！");
-         } else if (value === "") {
-             alert("你一定要输入一个手机或座机号码才可以！");
-             update_tel();
-         } else {
-             document.getElementById("telInfo").innerHTML=value;
-             setCookie("name",tel,365);
-             alert("已成功修改电话为："+ value);
-             update_address();
-         }
-     }
-     function update_address() {
-         var value = prompt("更正地址为:",document.getElementById("addressInfo").innerHTML);
-         if (value === null) {
-             alert("你取消了本次地址信息更改操作！");
-         } else if (value === "") {
-             alert("你一定要输入一个地址才可以！");
-             update_address();
-         } else {
-             document.getElementById("addressInfo").innerHTML=value;
-             setCookie("name",tel,365);
-             alert("已成功修改地址为："+ value);
-         }
-     }   
-    </script>	
-    
-    <script>
-    function setCookie(c_name,value,expiredays) {
-    var exdate=new Date()
-    exdate.setDate(exdate.getDate()+expiredays)
-    document.cookie=c_name+ "=" +escape(value)+
-    ((expiredays==null) ? "" : ";expires="+exdate.toGMTString())
-    }
-    function getCookie(c_name){
-    if (document.cookie.length>0)
-      {
-      c_start=document.cookie.indexOf(c_name + "=")
-      if (c_start!=-1)
-        { 
-        c_start=c_start + c_name.length+1 
-        c_end=document.cookie.indexOf(";",c_start)
-        if (c_end==-1) c_end=document.cookie.length
-        return unescape(document.cookie.substring(c_start,c_end))
-        } 
-      }
-    return ""
-    }
-    function delCookie(name){
-        var date = new Date(); 
-        date.setTime(date.getTime() - 10000); 
-        document.cookie = name + "=a; expires=" + date.toGMTString(); 
-    } 
+        //     
+        //     function update_name() {
+        //         var value = prompt("更正名字为:",document.getElementById("nameInfo").innerHTML);
+        //         if (value === null) {
+        //             alert("你取消了本次联系人更改操作！");
+        //         } else if (value === "") {
+        //             alert("你一定要输入一个名字才可以！");
+        //             update_info();
+        //         } else {
+        //             document.getElementById("nameInfo").innerHTML=value;
+        //             setCookie("name",tel,365);
+        //             alert("已成功修改名字为："+ value);
+        //             update_tel();
+        //         }
+        //     }
+        //     function update_tel() {
+        //         var value = prompt("更正电话为:",document.getElementById("telInfo").innerHTML);
+        //         if (value === null) {
+        //             alert("你取消了本次联系方式更改操作！");
+        //         } else if (value === "") {
+        //             alert("你一定要输入一个手机或座机号码才可以！");
+        //             update_tel();
+        //         } else {
+        //             document.getElementById("telInfo").innerHTML=value;
+        //             setCookie("name",tel,365);
+        //             alert("已成功修改电话为："+ value);
+        //             update_address();
+        //         }
+        //     }
+        //     function update_address() {
+        //         var value = prompt("更正地址为:",document.getElementById("addressInfo").innerHTML);
+        //         if (value === null) {
+        //             alert("你取消了本次地址信息更改操作！");
+        //         } else if (value === "") {
+        //             alert("你一定要输入一个地址才可以！");
+        //             update_address();
+        //         } else {
+        //             document.getElementById("addressInfo").innerHTML=value;
+        //             setCookie("name",tel,365);
+        //             alert("已成功修改地址为："+ value);
+        //         }
+        //     }
+    </script>
 
-    function showInfo(){
-        name = getCookie("name");
-        tel = getCookie("tel");
-        address = getCookie("address")
-        if(name === null || name === "") {
-            alert("首次访问，先来补充下信息吧～就三步");
-            name=prompt("怎么称呼您？","");
-            tel=prompt("您的手机号码或者座机")
-            address=prompt("提供我们一个可以来上门服务的地址")
-            if (name!=null&&name!=""){
-                setCookie("name",name,365);
-                setCookie("tel",tel,365);
-                setCookie("address",address,365);
+
+    <script>
+        function showLocalInfo() {
+            var name_l = getCookie("name");
+            var tel_l = getCookie("tel");
+            var id_l = getCookie("id");
+            if (id_l == null || id_l == "") {
+                window.location.href = "grzx.html";
+                ui.notice("新用户！", 1000);
+
+            } else {
+                $.ajax({
+                    type: "POST",
+                    //                async:false,
+                    data: "tel=" + tel_l,
+                    dataType: "JSON",
+                    url: "http://121.40.18.253:8080/mengzhan/userFindDeal.jsp",
+                    success: function (data) {
+                        var msg = data;
+                        var companyInfo_r = msg[0].company;
+                        var areaInfo_r = msg[0].garden;
+                        var coinInfo_r = msg[0].gold;
+                        var idInfo_r = msg[0].id;
+                        var nameInfo_r = msg[0].name;
+                        var sexInfo_r = msg[0].sex;
+                        var roomInfo_r = msg[0].site;
+                        var telInfo_r = msg[0].tel;
+                        printUserInfo(companyInfo_r, areaInfo_r, coinInfo_r, idInfo_r, nameInfo_r, sexInfo_r, roomInfo_r, telInfo_r);
+                        ui.success("欢迎回来，" + nameInfo_r, 1000);
+
+                    }
+                })
             }
-            //update_name();
-        } else {
-            alert("欢迎回来，"+name);
+
         }
-            document.getElementById("nameInfo").innerHTML = name;
-            document.getElementById("telInfo").innerHTML = tel;
-            document.getElementById("addressInfo").innerHTML = address;
+
+
+        function printUserInfo(companyInfo_r, areaInfo_r, coinInfo_r, idInfo_r, nameInfo_r, sexInfo_r, roomInfo_r, telInfo_r) {
+            document.getElementById("areaInfo").innerHTML = areaInfo_r;
+            document.getElementById("coin").innerHTML = coinInfo_r;
+            document.getElementById("idInfo").innerHTML = idInfo_r;
+            document.getElementById("nameInfo").innerHTML = nameInfo_r;
+            //        document.getElementById("sexInfo").innerHTML = sexInfo_r;
+            document.getElementById("companyInfo").innerHTML = companyInfo_r;
+            document.getElementById("roomInfo").innerHTML = roomInfo_r;
+            document.getElementById("telInfo").innerHTML = telInfo_r;
+            if (sexInfo_r == "男") {
+                document.getElementById("sexInfo").innerHTML = "先生";
+            } else {
+                document.getElementById("sexInfo").innerHTML = "女士";
+            }
+        }
+
+        function sendJJData1() {
+            var sendtime = eval(document.getElementById("select_time")).value;
+            var tel_raw = document.getElementById("telInfo").innerHTML;
+            var name = document.getElementById("nameInfo").innerHTML;
+            var company = document.getElementById("companyInfo").innerHTML;
+            var site = document.getElementById("roomInfo").innerHTML;
+            var remark = eval(document.getElementById("remarkInfo")).value;
+            var expcompany = eval(document.getElementById("select_express")).value;
+            var id = document.getElementById("idInfo").innerHTML;
+            var area = document.getElementById("areaInfo").innerHTML;
+            var coin = document.getElementById("coin").innerHTML;
+            var ordertime = CurentTime();
+            var tel1 = tel_raw.replace(/[^0-9]+/ig,"");
+             var tel = tel1.substring(0,11);
+            //        alert("id="+id+"&name="+name+"&tel="+tel+"&site="+site+"&company="+"未知公司"+"&garden="+area+"&gold="+coin+"expcompany="+expcompany+"remark="+remark+"&ordertime="+ordertime+"&sendtime="+sendtime);
+            //    window.location.href="http://121.40.18.253:8080/mengzhan/getDeal.jsp?"+"id="+id+"&name="+name+"&tel="+tel+"&site="+site+"&company="+"未知公司"+"&garden="+area+"&gold="+coin+"expcompany="+expcompany+"remark="+remark+"&ordertime="+ordertime+"&sendtime="+sendtime;
+            //    if(id==null)
+            //	{
+            //		id="未分配ID";
+            //	}
+            //    if(company==null)
+            //	{
+            //		company="未知公司";
+            //	}
+            //    if(gold==null)
+            //	{
+            //		gold="未知金币";
+            //	}
+            if (remark == null || remark == "") {
+                remark = "无";
+            }
+
+            $.ajax({
+                type: "POST",
+                data: "id=" + id + "&name=" + name + "&tel=" + tel + "&site=" + site + "&company=" + company + "&garden=" + area + "&gold=" + coin + "&expcompany=" + expcompany + "&remark=" + remark + "&ordertime=" + ordertime + "&sendtime=" + sendtime,
+                dataType: "JSON",
+                url: "http://121.40.18.253:8080/mengzhan/getDeal.jsp",
+                success: function (msg) {
+                    ui.success("预约成功！", 2000);
+//                    alert(id+"/"+name+"/"+tel+"/"+site+"/"+company+"/"+area+"/"+coin+"/"+expcompany+"/"+remark+"/"+ordertime+"/"+sendtime)
+                }
+            })
+        }
+    </script>
+    <script>
+        function CurentTime() {
+            var now = new Date();
+
+            var year = now.getFullYear(); //年
+            var month = now.getMonth() + 1; //月
+            var day = now.getDate(); //日
+
+            var hh = now.getHours(); //时
+            var mm = now.getMinutes();
+            var ss = now.getSeconds(); //分
+
+            var clock = year + "-";
+
+            if (month < 10)
+                clock += "0";
+
+            clock += month + "-";
+
+            if (day < 10)
+                clock += "0";
+
+            clock += day + " ";
+
+            if (hh < 10)
+                clock += "0";
+
+            clock += hh + ":";
+            if (mm < 10)
+                clock += '0';
+            clock += mm + ":";
+
+            if (ss < 10)
+                clock += "0";
+            clock += ss;
+            return (clock);
+        }
+    </script>
+</body>
+
+<script>
+    function closeWindows() {
+        WeixinJSBridge.call('closeWindow');
     }
-    </script>		
-  </body>
-  
-  <script>
-  function closeWindows(){
-    	WeixinJSBridge.call('closeWindow');
-    }
-    
-		document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {  
-		WeixinJSBridge.call('hideOptionMenu');  
-		});  
-	</script>
-	
-	
+
+    document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+        WeixinJSBridge.call('hideOptionMenu');
+    });
+</script>
+
+
 </html>
